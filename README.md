@@ -3,8 +3,9 @@
 ## Data (K400)
 
 ```sh
-sh data_preprocessing/k400_downloader.sh
-sh data_preprocessing/k400_extractor.sh
+cd data_preprocessing
+sh k400_downloader.sh
+sh k400_extractor.sh
 ```
 
 We need to change the data structure.
