@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Download directories vars
-root_dl="k400"
-root_dl_targz="k400_targz"
+root_dl="../datasets/k400"
+root_dl_targz="../datasets/k400_targz"
 
 # Make root directories
 [ ! -d $root_dl ] && mkdir $root_dl
