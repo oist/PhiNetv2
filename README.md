@@ -8,27 +8,32 @@ sh k400_downloader.sh
 sh k400_extractor.sh
 ```
 
-We need to change the data structure.
+We need to change the data structure. Also, there is no category replacement_for_corrupted_k400; we need to add it manually. 
 
 ```python
-python arrange_by_classes_modified.py
+cd data_preprocessing
+python3 arrange_by_classes_modified.py ../datasets/k400/
+cd ../datasets/k400/videos/train/
+cp -r ../../replacement/replacement_for_corrupted_k400/ ./
 ```
 
-There is no category replacement_for_corrupted_k400; we need to add it manually. 
+
 
 ## Data-preprocessing
+- We follow the data-preprocessing of RSP method. 
 - We resize the data into 256x256 for the efficient loading while training.
 - If ffmpeg is not installed in your machine. It needs to install it.
-- For our setup, we use $DATA_ROOT=/bucket/YamadaU/Datasets
 
 ```python
-python data_preprocessing/make_256scale_modified.py --datadir $DATA_ROOT
+cd data_preprocessing
+python3 make_256scale_modified.py --datadir ../datasets/k400/videos
 ```
 
 - We additionally provide the code to filter out several not-working videos.
 
 ```python
-python data_preprocessing/make_labels.py --datadir $DATA_ROOT --filedir train2
+cd data_preprocessing
+python3 make_labels.py --datadir ../datasets/k400/videos --filedir train2
 ```
 
 ## Pre-training
