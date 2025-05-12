@@ -28,12 +28,13 @@ cp -r ../../replacement/replacement_for_corrupted_k400/ ./
 cd data_preprocessing
 python3 make_256scale_modified.py --datadir ../datasets/k400/videos
 ```
-
 - We additionally provide the code to filter out several not-working videos.
+
+Then, we generate a file that is used for training. The link should be direct link. 
 
 ```python
 cd data_preprocessing
-python3 make_labels.py --datadir ../datasets/k400/videos --filedir train2
+python3 make_labels.py --datadir /home/m/makoto-yamada/work/Python/PhiNetv2/datasets/k400/videos --filedir /home/m/makoto-yamada/work/Python/PhiNetv2/datasets/k400/videos/train2
 ```
 
 ## Pre-training
