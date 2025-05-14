@@ -1,5 +1,7 @@
 # PhiNetv2
 
+Our code is heavily based on RSP and CropMAE. 
+
 ## Data (K400)
 
 ```sh
@@ -47,15 +49,18 @@ python3 -m torch.distributed.launch --nproc_per_node=4 --master_port=29500 main_
 --model phinetv2_vit_small_patch16
 --epochs 400
 --warmup_epochs 40
---data_path /bucket/YamadaU/Datasets/
+--data_path /home/m/makoto-yamada/work/Python/PhiNetv2/datasets/
 --log_dir log
---output_dir output_bs32
+--output_dir output
 --norm_pix_loss
 --repeated_sampling 2 
 ```
 
 ## Evaluation
 We modified the code of RSP (ICML 2024) and CropMAE (ECCV 2024). 
+
+We provide the checkpoint below:  
+- ViT-S/16 400 epochs: [Download here](https://example.com/path/to/checkpoint)
 
 ### Davis
 
