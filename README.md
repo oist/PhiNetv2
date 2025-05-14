@@ -1,3 +1,20 @@
+<h1 align="center"> PhiNet v2: A Mask-Free Brain-Inspired Vision Foundation Model from Video</h1>
+<div align="center">
+  <a href="https://scholar.google.co.jp/citations?user=1cKNu1gAAAAJ&hl=en" target="_blank">Makoto&nbsp;Yamada</a><sup>1</sup> &ensp; <b>&middot;</b> &ensp;
+  <a target="_blank">Ayoub&nbsp;Rhim</a><sup>1</sup> &ensp; <b>&middot;</b> &ensp;
+  <a target="_blank">Kian Ming A.&nbsp;Chai</a><sup>2</sup>
+  <br>
+  <a href="https://riverstone496.github.io/" target="_blank">Satoki&nbsp;Ishikawa</a><sup>3</sup>&ensp; <b>&middot;</b> &ensp;
+  <a href="https://sabokrou.github.io/" target="_blank">Mohammad&nbsp;Sabokrou</a><sup>1</sup>&ensp; <b>&middot;</b> &ensp;
+  <a href="https://yaohungt.github.io/" target="_blank">Yao-Hung Hubert&nbsp;Tsai</a><sup>1</sup>
+  <br>
+  <sup>1</sup> OIST &emsp; <sup>2</sup>DSO National Laboratories &emsp; <sup>3</sup>Institute of Science Tokyo &emsp; <br>
+</div>
+<h3 align="center"> [<a href="">arXiv</a>]</h3>
+
+
+
+
 # PhiNetv2
 
 Our code is heavily based on RSP and CropMAE. 
