@@ -449,14 +449,13 @@ class PhiNetv2(nn.Module):
     
         kl_loss1, kl_value1 = self.kl_loss(post_logits1, prior_logits1) 
         kl_loss2, kl_value2 = self.kl_loss(post_logits2, prior_logits2) 
+        loss_sim1 = (kl_loss1 + kl_loss2)/2 
 
-        loss_prior = kl_value1
-        
         mseloss = nn.MSELoss()
         
-        loss_post = mseloss(tgt_pred,tgt_z[:,1:,:].detach())/2 + mseloss(src_pred,src_z[:,1:,:].detach())/2
+        loss_sim2 = mseloss(tgt_pred,tgt_z[:,1:,:].detach())/2 + mseloss(src_pred,src_z[:,1:,:].detach())/2
 
-        loss = loss_post + self.kl_scale*kl_loss 
+        loss = loss_sim2 + self.kl_scale*loss_sim1 
 
         return loss, tgt_pred
 

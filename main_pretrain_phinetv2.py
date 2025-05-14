@@ -16,7 +16,7 @@ import timm.optim.optim_factory as optim_factory
 
 import util.misc as misc
 from util.misc import NativeScalerWithGradNormCount as NativeScaler
-from util.kinetics import TripletKineticsDino, PairedKinetics,TripletKineticsAug
+from util.kinetics import PairedKinetics
 
 import models_phinetv2
 
