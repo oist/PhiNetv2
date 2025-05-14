@@ -1,4 +1,4 @@
-<h1 align="center"> PhiNet v2: A Mask-Free Brain-Inspired Vision Foundation Model from Video</h1>
+<h1 align="center"> PhiNet v2: A Mask-Free Brain-Inspired <br> Vision Foundation Model from Video</h1>
 <div align="center">
   <a href="https://scholar.google.co.jp/citations?user=1cKNu1gAAAAJ&hl=en" target="_blank">Makoto&nbsp;Yamada</a><sup>1</sup> &ensp; <b>&middot;</b> &ensp;
   <a target="_blank">Ayoub&nbsp;Rhim</a><sup>1</sup> &ensp; <b>&middot;</b> &ensp;
@@ -8,16 +8,17 @@
   <a href="https://sabokrou.github.io/" target="_blank">Mohammad&nbsp;Sabokrou</a><sup>1</sup>&ensp; <b>&middot;</b> &ensp;
   <a href="https://yaohungt.github.io/" target="_blank">Yao-Hung Hubert&nbsp;Tsai</a><sup>1</sup>
   <br>
-  <sup>1</sup> OIST &emsp; <sup>2</sup>DSO National Laboratories &emsp; <sup>3</sup>Institute of Science Tokyo &emsp; <br>
+  <sup>1</sup> Okinawa Institute of Science and Technology &emsp; <sup>2</sup>DSO National Laboratories &emsp; <sup>3</sup>Institute of Science Tokyo &emsp; <br>
 </div>
-<h3 align="center"> [<a href="">arXiv</a>]</h3>
-
-
-
+<p align="center">
+  <a href="https://raw.githubusercontent.com/oist/PhiNetv2/main/image/FIG1_PhinetV2.png">
+    <img src="https://raw.githubusercontent.com/oist/PhiNetv2/main/image/FIG1_PhinetV2.png" width="500"/>
+  </a>
+</p>
 
 # PhiNetv2
 
-Our code is heavily based on RSP and CropMAE. 
+PhiNetv2 pretrain code is heavily based on [Visual Representation Learning with Stochastic Frame Prediction](https://github.com/huiwon-jang/RSP). 
 
 ## Data (K400)
 
@@ -35,8 +36,6 @@ python3 arrange_by_classes_modified.py ../datasets/k400/
 cd ../datasets/k400/videos/train/
 cp -r ../../replacement/replacement_for_corrupted_k400/ ./
 ```
-
-
 
 ## Data-preprocessing
 - We follow the data-preprocessing of RSP method. 
