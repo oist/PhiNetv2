@@ -1,8 +1,8 @@
 <h1 align="center"> PhiNet v2: A Mask-Free Brain-Inspired <br> Vision Foundation Model from Video</h1>
 <div align="center">
   <a href="https://scholar.google.co.jp/citations?user=1cKNu1gAAAAJ&hl=en" target="_blank">Makoto&nbsp;Yamada</a><sup>1</sup> &ensp; <b>&middot;</b> &ensp;
-  <a target="_blank">Ayoub&nbsp;Rhim</a><sup>1</sup> &ensp; <b>&middot;</b> &ensp;
-  <a target="_blank">Kian Ming A.&nbsp;Chai</a><sup>2</sup>
+ <a target="_blank">Kian Ming A.&nbsp;Chai</a><sup>2</sup>&ensp; <b>&middot;</b> &ensp;
+  <a target="_blank">Ayoub&nbsp;Rhim</a><sup>1</sup> 
   <br>
   <a href="https://riverstone496.github.io/" target="_blank">Satoki&nbsp;Ishikawa</a><sup>3</sup>&ensp; <b>&middot;</b> &ensp;
   <a href="https://sabokrou.github.io/" target="_blank">Mohammad&nbsp;Sabokrou</a><sup>1</sup>&ensp; <b>&middot;</b> &ensp;
