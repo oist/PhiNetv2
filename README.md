@@ -76,7 +76,7 @@ python3 -m torch.distributed.launch --nproc_per_node=4 --master_port=29500 main_
 We modified the code of RSP (ICML 2024) and CropMAE (ECCV 2024). 
 
 We provide the checkpoint below:  
-- ViT-S/16 400 epochs: [Download here](https://example.com/path/to/checkpoint)
+- ViT-S/16 400 epochs: TBD
 
 ### Davis
 
