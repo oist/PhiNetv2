@@ -56,7 +56,6 @@ python3 make_labels.py --datadir /home/m/makoto-yamada/work/Python/PhiNetv2/data
 ```
 
 ## Pre-training
-Our training script is same as the RSP (ICML 2024). 
 
 ```sh
 python3 -m torch.distributed.launch --nproc_per_node=4 --master_port=29500 main_pretrain_phinetv2.py
@@ -85,5 +84,5 @@ We provide the checkpoint below:
 ### JHMDB
 
 ## Acknowledgement
-We thank Mr. Renaud Vandeghen for his support on running experiments on JHMDB.
+We thank Mr. Renaud Vandeghen for his support on running experiments on JHMDB. Chai contributed while on sabbatical leave visiting the Machine Learning and Data Science Unit at Okinawa Institute of Science and Technology, and the Department of Statistics in the University of Oxford. This research was carried out solely for academic purposes using OIST resources.
 
