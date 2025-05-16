@@ -206,7 +206,7 @@ def main(args):
 
         
 
-        if args.output_dir and (epoch % 2 == 0 or epoch in [args.epochs - 2, args.epochs - 1, args.epochs]):
+        if args.output_dir and (epoch % 10 == 0 or epoch in [args.epochs - 2, args.epochs - 1, args.epochs]):
             misc.save_model(
                 args=args,
                 model=model,
