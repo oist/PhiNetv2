@@ -10,6 +10,7 @@
   <br>
   <sup>1</sup> Okinawa Institute of Science and Technology &emsp; <sup>2</sup>DSO National Laboratories &emsp; <sup>3</sup>Institute of Science Tokyo &emsp; <br>
 </div>
+<br>
 <p align="center">
   <a href="https://raw.githubusercontent.com/oist/PhiNetv2/main/image/FIG1_PhinetV2.png">
     <img src="https://raw.githubusercontent.com/oist/PhiNetv2/main/image/FIG1_PhinetV2.png" width="500"/>
@@ -71,11 +72,12 @@ python3 -m torch.distributed.launch --nproc_per_node=4 --master_port=29500 main_
 --repeated_sampling 2 
 ```
 
-## Evaluation
-We modified the code of RSP (ICML 2024) and CropMAE (ECCV 2024). 
-
+## Pre-trained model
 We provide the checkpoint below:  
-- ViT-S/16 400 epochs: TBD
+- ViT-S/16 400 epochs: To be updated.
+
+## Evaluation
+To be updated.
 
 ### Davis
 
