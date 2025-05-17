@@ -48,7 +48,7 @@ cd data_preprocessing
 python3 make_256scale_modified.py --datadir ../datasets/k400/videos
 ```
 
-In our PhiNet v2 experiments, we used a total of 240,355 MP4 files based on our previous preprocessing. However, we found that the above code generates 241,738 videos when preparing the preprocessing pipeline.
+In our PhiNet v2 experiments, we used a total of 240,355 MP4 files based on our previous preprocessing. However, we found that the above code generates 241,738 videos when preparing the preprocessing pipeline code for publication.
 To ensure reproducibility, we provide the following filtering function:
 
 ```sh
