@@ -39,16 +39,24 @@ cp -r ../../replacement/replacement_for_corrupted_k400/ ./
 ```
 
 ## Data-preprocessing
-- We follow the data-preprocessing of RSP method. 
-- We resize the data into 256x256 for the efficient loading while training.
-- If ffmpeg is not installed in your machine. It needs to install it.
+- We follow the data preprocessing procedure of the RSP method.
+- The videos are resized to 256×256 for efficient loading during training.
+- If ffmpeg is not installed on your machine, please install it beforehand.
 
 ```python
 cd data_preprocessing
 python3 make_256scale_modified.py --datadir ../datasets/k400/videos
 ```
-- We additionally provide the code to filter out several not-working videos.
 
+In our PhiNet v2 experiments, we used a total of 240,355 MP4 files based on our previous preprocessing. However, we found that the above code generates 241,738 videos when preparing the preprocessing pipeline.
+To ensure reproducibility, we provide the following filtering function:
+
+```sh
+cd data_preprocessing
+sh mv_filtered.sh
+```
+
+- We additionally apply the code to filter out several not-working videos (same as RSP code).
 Then, we generate a file that is used for training. The link should be direct link. 
 
 ```python
