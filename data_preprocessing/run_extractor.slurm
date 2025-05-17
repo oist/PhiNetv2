@@ -3,6 +3,6 @@
 #SBATCH -t 7-0
 #SBATCH --mem=32G
 #SBATCH -c 16
-#SBATCH --gres=gpu:V100:1
+#SBATCH --gres=gpu:1
 
-./extract_rsp.sh
+sh k400_extractor.sh
