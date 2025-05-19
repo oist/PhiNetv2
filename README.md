@@ -101,6 +101,12 @@ To be updated.
 
 ### JHMDB
 
+## License
+
+This project is licensed under the MIT License.  
+It includes code originally developed by Huiwon Jang (2024), licensed under the MIT License.
+See the [LICENSE](./LICENSE) file for details.
+
 ## Acknowledgement
 We thank Mr. Renaud Vandeghen for his support on running experiments on JHMDB. Chai contributed while on sabbatical leave visiting the Machine Learning and Data Science Unit at Okinawa Institute of Science and Technology, and the Department of Statistics in the University of Oxford. This research was carried out solely for academic purposes using OIST resources.
 
