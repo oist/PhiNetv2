@@ -10,12 +10,14 @@
   <br>
   <sup>1</sup> Okinawa Institute of Science and Technology &emsp; <sup>2</sup>DSO National Laboratories &emsp; <sup>3</sup>Institute of Science Tokyo &emsp; <br>
 </div>
+<h3 align="center">[<a href="https://arxiv.org/abs/2505.11129">arXiv</a>]</h3>
 <br>
 <p align="center">
   <a href="https://raw.githubusercontent.com/oist/PhiNetv2/main/image/FIG1_PhinetV2.png">
     <img src="https://raw.githubusercontent.com/oist/PhiNetv2/main/image/FIG1_PhinetV2.png" width="500"/>
   </a>
 </p>
+
 
 # PhiNetv2
 
