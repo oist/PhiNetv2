@@ -90,7 +90,7 @@ Pretraining takes approximately 2.5 days on 4 A100 GPUs (80GB). By reducing the 
 
 | Dataset  | $J\\&F_m$ (DAVIS)  | mIoU (VIP) | PCK@0.1 (JHMDB) | Download |
 | -------- | ------------------ | ---- | ------- | -------- |
-| K400     | 60.1               | 33.1 | 45.0    |  [TBD]()
+| K400     | 60.1               | 33.1 | 45.0    |  [Download](https://huggingface.co/OIST-MLDS-Unit/PhiNetV2/blob/main/phinetv2-vits16.pth)
 
 ## Evaluation
 To be updated.
