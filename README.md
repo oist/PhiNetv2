@@ -23,6 +23,8 @@
 
 PhiNetv2 pretrain code is heavily based on [Visual Representation Learning with Stochastic Frame Prediction](https://github.com/huiwon-jang/RSP). 
 
+
+
 ## Data (K400)
 
 ```sh
@@ -82,9 +84,13 @@ python3 -m torch.distributed.launch --nproc_per_node=4 --master_port=29500 main_
 --repeated_sampling 2 
 ```
 
+Pretraining takes approximately 2.5 days on 4 A100 GPUs (80GB). By reducing the batch size to 8 or 16, the model can be trained using 4 V100 GPUs instead.
+
 ## Pre-trained model
-We provide the checkpoint below:  
-- ViT-S/16 400 epochs: To be updated.
+
+| Dataset  | $J\\&F_m$ (DAVIS)  | mIoU (VIP) | PCK@0.1 (JHMDB) | Download |
+| -------- | ------------------ | ---- | ------- | -------- |
+| K400     | 60.1               | 33.1 | 45.0    |  [TBD]()
 
 ## Evaluation
 To be updated.
