@@ -107,6 +107,19 @@ This project is licensed under the MIT License.
 It includes code originally developed by Huiwon Jang (2024), licensed under the MIT License.
 See the [LICENSE](./LICENSE) file for details.
 
+## Citation
+
+If you find this code or model useful in your research, we kindly ask you to cite the following paper:
+
+```bibtex
+@article{yamada2025phinet,
+  title={PhiNet v2: A Mask-Free Brain-Inspired Vision Foundation Model from Video},
+  author={Yamada, Makoto and Chai, Kian Ming A and Rhim, Ayoub and Ishikawa, Satoki and Sabokrou, Mohammad and Tsai, Yao-Hung Hubert},
+  journal={arXiv preprint arXiv:2505.11129},
+  year={2025}
+}
+```
+
 ## Acknowledgement
 We thank Mr. Renaud Vandeghen for his support on running experiments on JHMDB. Chai contributed while on sabbatical leave visiting the Machine Learning and Data Science Unit at Okinawa Institute of Science and Technology, and the Department of Statistics in the University of Oxford. This research was carried out solely for academic purposes using OIST resources.
 
