@@ -1,0 +1,8 @@
+apex==0.9.10dev
+decord==0.6.0
+numpy==2.2.6
+Pillow==11.2.1
+tensorflow==2.19.0
+torch==1.12.1+cu113
+torchvision==0.13.1+cu113
+tqdm==4.67.1
