@@ -23,6 +23,29 @@
 
 PhiNetv2 pretrain code is heavily based on [Visual Representation Learning with Stochastic Frame Prediction](https://github.com/huiwon-jang/RSP). 
 
+## Environment
+All the code was run using Python 3.9.12. 
+
+```sh
+mkdir local
+mkdir src
+mkdir python
+cd local/src
+wget https://www.python.org/ftp/python/3.9.12/Python-3.9.12.tgz
+tar zxvf Python-3.9.12.tgz
+./configure --prefix=/home/m/makoto-yamada/local/python/
+make
+make install
+
+#Add the following in the .bashrc
+PATH="$HOME/local/python/bin:$PATH"
+
+source .bashrc
+
+pip3 install torch==1.12.1+cu113 torchvision==0.13.1+cu113 torchaudio==0.12.1 --extra-index-url https://download.pytorch.org/whl/cu113
+pip3 uninstall numpy 
+pip3 install numpy==1.26.4
+```
 
 
 ## Data (K400)
