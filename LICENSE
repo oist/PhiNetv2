@@ -20,7 +20,20 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
+Note: The following files are not covered by the MIT License and are subject to different licensing terms:
+
+- data_preprocessing/arrange_by_classes_modified.py
+- data_preprocessing/k400_downloader.sh
+- data_preprocessing/k400_extractor.sh
+
+These files are modified versions of scripts from the Kinetics dataset repository:
+https://github.com/cvdfoundation/kinetics-dataset/tree/main
+
+Accordingly, their use is governed by the original license of that repository.
+Please refer to the original repository for licensing terms.
+
 ---
+
 This software includes portions of code originally developed by:
 MIT License
 
