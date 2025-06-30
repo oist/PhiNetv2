@@ -49,6 +49,7 @@ pip3 install numpy==1.26.4
 
 
 ## Data (K400)
+The original downloader and extractor codes are available at [kinetics-dataset](https://github.com/cvdfoundation/kinetics-dataset).
 
 ```sh
 cd data_preprocessing
