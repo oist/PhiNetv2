@@ -104,7 +104,6 @@ python3 -m torch.distributed.launch --nproc_per_node=4 --master_port=29500 main_
 --data_path /home/m/makoto-yamada/work/Python/PhiNetv2/datasets/
 --log_dir log
 --output_dir output
---norm_pix_loss
 --repeated_sampling 2 
 ```
 
