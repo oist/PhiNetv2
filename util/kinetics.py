@@ -11,6 +11,7 @@ import torchvision.transforms.functional as F
 import torchvision.transforms as T
 from PIL import Image
 import numpy as np
+import decord
 import utils
 
 mean_std = [[0.485, 0.456, 0.406],[0.229, 0.224, 0.225]]
@@ -110,6 +111,93 @@ class PairedKinetics(Dataset):
             indices = random.sample(range(seg_len), 2)
             indices.sort()
             idx_cur, idx_fut = indices
+        frame_cur = vr[idx_cur].asnumpy()
+        frame_fut = vr[idx_fut].asnumpy()
+
+        return frame_cur, frame_fut
+
+    def transform(self, src_image, tgt_image):
+        src_image, tgt_image = self.transforms(src_image, tgt_image)
+        src_image = self.basic_transform(src_image)
+        tgt_image = self.basic_transform(tgt_image)
+        return src_image, tgt_image
+
+#This for WorldTours data
+class PairedKineticsWT(Dataset):
+    def __init__(
+        self,
+        root,
+        max_distance=48,
+        repeated_sampling=2
+    ):
+        super().__init__()
+        self.root = root
+        with open(
+            os.path.join(self.root, f"walking_tours_indexed.pkl"), "rb"
+        ) as f:
+            self.samples = pickle.load(f)
+
+        #self.v_decoder = DecordInit()
+        #v_reader = self.v_decoder(self.root)
+        #self.samples = len(v_reader)
+
+        self.transforms = PairedRandomResizedCrop()
+        self.basic_transform = transforms.Compose(
+            [transforms.ToTensor(),
+             transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])]
+        )
+
+        self.max_distance = max_distance
+        self.repeated_sampling = repeated_sampling
+
+    def __len__(self):
+        return len(self.samples)
+
+    def __getitem__(self, index):
+        sample = os.path.join(self.root, self.samples[index][1])
+        vr = VideoReader(sample, num_threads=1, ctx=cpu(0))
+        src_images = []
+        tgt_images = []
+        for i in range(self.repeated_sampling):
+            src_image, tgt_image = self.load_frames(vr)
+            src_image, tgt_image = self.transform(src_image, tgt_image)
+            src_images.append(src_image)
+            tgt_images.append(tgt_image)
+        src_images = torch.stack(src_images, dim=0)
+        tgt_images = torch.stack(tgt_images, dim=0)
+        return src_images, tgt_images, 0
+
+    def load_frames(self, vr):
+        # handle temporal segments
+        seg_len = len(vr)
+        least_frames_num = self.max_distance + 1  # idx_cur と idx_fut の距離を [4, max_distance] に収めたい想定
+
+        if seg_len == 0:
+            raise ValueError("Empty video: no frames available")
+
+        if seg_len >= least_frames_num:
+            # idx_cur を選んだあと、その先に最低1フレーム以上あるように上限を計算
+            idx_cur = random.randint(0, seg_len - least_frames_num)
+
+            # idx_cur から先にどれだけ余裕があるかで interval の上限を絞る
+            hi = min(self.max_distance, seg_len - idx_cur - 1)  # 先頭からの残り
+            if hi <= 0:
+                # 安全側：末尾近すぎる場合は1つ戻すなどして距離を確保
+                idx_cur = max(0, seg_len - 2)
+                hi = seg_len - idx_cur - 1  # ここで最低1になる
+
+            # 下限 4 を守れないほど短い場合は、下限を hi に寄せる（＝ [hi, hi] で固定）
+            lo = min(4, hi)
+            interval = random.randint(lo, hi)
+            idx_fut = idx_cur + interval
+        else:
+            if seg_len >= 2:
+                # 短い動画だが2フレーム以上はある → 重複なしで2点
+                idx_cur, idx_fut = sorted(random.sample(range(seg_len), 2))
+            else:
+                # フレームが1つしかない → 同じフレームを2回使う（重複ありに相当）
+                idx_cur = idx_fut = 0  # 代わりに random.choices(range(seg_len), k=2) でも可
+
         frame_cur = vr[idx_cur].asnumpy()
         frame_fut = vr[idx_fut].asnumpy()
 
