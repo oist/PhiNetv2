@@ -70,7 +70,7 @@ def get_args_parser():
     parser.add_argument("--warmup_epochs", type=int, default=40)
 
     # Dataset parameters
-    parser.add_argument("--data_path", default="/work/YamadaU/myamada/Python/dataset/WalkingTours/", type=str)
+    parser.add_argument("--data_path", default="/work/YamadaU/myamada/Python/dataset/WalkingTours2/", type=str)
     parser.add_argument("--max_distance", default=48, type=int)
     parser.add_argument("--repeated_sampling", type=int, default=2)
     parser.add_argument("--num_workers", default=6, type=int)

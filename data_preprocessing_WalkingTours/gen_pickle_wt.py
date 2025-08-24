@@ -20,8 +20,8 @@ def save_indexed_list_to_pickle(indexed_list, pickle_path):
         pickle.dump(indexed_list, f)
 
 if __name__ == "__main__":
-    input_dir = "/work/YamadaU/myamada/Python/dataset/WalkingTours/"       # ← 実際のパスに変更してください
-    pickle_path = "/work/YamadaU/myamada/Python/dataset/WalkingTours/walking_tours_indexed.pkl"        # 出力ファイル名（例）
+    input_dir = "/work/YamadaU/myamada/Python/dataset/WalkingTours2/"       # ← 実際のパスに変更してください
+    pickle_path = "/work/YamadaU/myamada/Python/dataset/WalkingTours2/walking_tours_indexed.pkl"        # 出力ファイル名（例）
 
     indexed_list = list_indexed_videos(input_dir)
     print(f"Found {len(indexed_list)} video files. Saving to {pickle_path} ...")
