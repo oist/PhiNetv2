@@ -16,7 +16,49 @@ import utils
 
 mean_std = [[0.485, 0.456, 0.406],[0.229, 0.224, 0.225]]
 
+class PairedRandomResizedCropWT:
+    def __init__(
+        self,
+        hflip_p=0.5,
+        size=(224, 224),
+        scale=(0.5, 1.0),
+        ratio=(3./4., 4./3.),
+        interpolation=F.InterpolationMode.BICUBIC
+    ):
+        self.hflip_p = hflip_p
+        self.size = size
+        self.scale = scale
+        self.ratio = ratio
+        self.interpolation = interpolation
 
+    def __call__(self, np_RGB_img_1, np_RGB_img_2):
+        # Convert numpy images to PIL Images
+        pil_RGB_img_1 = F.to_pil_image(np_RGB_img_1)
+        pil_RGB_img_2 = F.to_pil_image(np_RGB_img_2)
+
+        i, j, h, w = transforms.RandomResizedCrop.get_params(
+            pil_RGB_img_1, scale=self.scale, ratio=self.ratio
+        )
+        # Apply the crop on both images
+        cropped_img_1 = F.resized_crop(pil_RGB_img_1,
+                                       i, j, h, w,
+                                       size=(h,w))
+        cropped_img_2 = F.resized_crop(pil_RGB_img_2,
+                                       i, j, h, w,
+                                       size=(h,w))
+        
+        resized_cropped_img_1 = F.resize(cropped_img_1,224)
+        resized_cropped_img_2 = F.resize(cropped_img_2,224)
+
+        final_cropped_img_1 = F.center_crop(resized_cropped_img_1, (224, 224))
+        final_cropped_img_2 = F.center_crop(resized_cropped_img_2, (224, 224))
+
+
+        if random.random() < self.hflip_p:
+            final_cropped_img_1 = F.hflip(final_cropped_img_1)
+            final_cropped_img_2 = F.hflip(final_cropped_img_2)
+
+        return final_cropped_img_1, final_cropped_img_2
 
 class PairedRandomResizedCrop:
     def __init__(
@@ -141,7 +183,7 @@ class PairedKineticsWT(Dataset):
         #v_reader = self.v_decoder(self.root)
         #self.samples = len(v_reader)
 
-        self.transforms = PairedRandomResizedCrop()
+        self.transforms = PairedRandomResizedCropWT()
         self.basic_transform = transforms.Compose(
             [transforms.ToTensor(),
              transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])]
@@ -170,34 +212,15 @@ class PairedKineticsWT(Dataset):
     def load_frames(self, vr):
         # handle temporal segments
         seg_len = len(vr)
-        least_frames_num = self.max_distance + 1  # idx_cur と idx_fut の距離を [4, max_distance] に収めたい想定
-
-        if seg_len == 0:
-            raise ValueError("Empty video: no frames available")
-
+        least_frames_num = self.max_distance + 1
         if seg_len >= least_frames_num:
-            # idx_cur を選んだあと、その先に最低1フレーム以上あるように上限を計算
             idx_cur = random.randint(0, seg_len - least_frames_num)
-
-            # idx_cur から先にどれだけ余裕があるかで interval の上限を絞る
-            hi = min(self.max_distance, seg_len - idx_cur - 1)  # 先頭からの残り
-            if hi <= 0:
-                # 安全側：末尾近すぎる場合は1つ戻すなどして距離を確保
-                idx_cur = max(0, seg_len - 2)
-                hi = seg_len - idx_cur - 1  # ここで最低1になる
-
-            # 下限 4 を守れないほど短い場合は、下限を hi に寄せる（＝ [hi, hi] で固定）
-            lo = min(4, hi)
-            interval = random.randint(lo, hi)
+            interval = random.randint(4, self.max_distance)
             idx_fut = idx_cur + interval
         else:
-            if seg_len >= 2:
-                # 短い動画だが2フレーム以上はある → 重複なしで2点
-                idx_cur, idx_fut = sorted(random.sample(range(seg_len), 2))
-            else:
-                # フレームが1つしかない → 同じフレームを2回使う（重複ありに相当）
-                idx_cur = idx_fut = 0  # 代わりに random.choices(range(seg_len), k=2) でも可
-
+            indices = random.sample(range(seg_len), 2)
+            indices.sort()
+            idx_cur, idx_fut = indices
         frame_cur = vr[idx_cur].asnumpy()
         frame_fut = vr[idx_fut].asnumpy()
 
