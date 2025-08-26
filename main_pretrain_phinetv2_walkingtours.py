@@ -71,7 +71,7 @@ def get_args_parser():
 
     # Dataset parameters
     parser.add_argument("--data_path", default="/work/YamadaU/myamada/Python/dataset/WalkingTours2/", type=str)
-    parser.add_argument("--max_distance", default=48, type=int)
+    parser.add_argument("--max_distance", default=96, type=int) #WT video is 60fps K400 is 30fps with max-distance is 48
     parser.add_argument("--repeated_sampling", type=int, default=2)
     parser.add_argument("--num_workers", default=6, type=int)
     parser.add_argument("--pin_mem", action="store_true")

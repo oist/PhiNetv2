@@ -215,7 +215,7 @@ class PairedKineticsWT(Dataset):
         least_frames_num = self.max_distance + 1
         if seg_len >= least_frames_num:
             idx_cur = random.randint(0, seg_len - least_frames_num)
-            interval = random.randint(4, self.max_distance)
+            interval = random.randint(8, self.max_distance)
             idx_fut = idx_cur + interval
         else:
             indices = random.sample(range(seg_len), 2)
