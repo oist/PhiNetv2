@@ -4,7 +4,7 @@ import sys
 import argparse
 import os
 
-CHUNK_FRAMES = 300  # 1 チャンクあたりのフレーム数
+CHUNK_FRAMES = 1200  # 1 チャンクあたりのフレーム数
 
 def get_fps(path: str) -> float:
     """ffprobe で avg_frame_rate を取得し、FPS（浮動小数）として返す"""

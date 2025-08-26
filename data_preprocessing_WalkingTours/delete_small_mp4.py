@@ -1,6 +1,6 @@
 import os
 
-def delete_small_mp4_files(root_dir, max_size_mb=1):
+def delete_small_mp4_files(root_dir, max_size_mb=5):
     """
     root_dir 以下の全ファイルを再帰的に探索し、
     サイズが max_size_mb MB 以下の .mp4 ファイルを削除する。
@@ -29,6 +29,6 @@ def delete_small_mp4_files(root_dir, max_size_mb=1):
 if __name__ == "__main__":
     target_dir = "/work/YamadaU/myamada/Python/dataset/WalkingTours/"
     if os.path.isdir(target_dir):
-        delete_small_mp4_files(target_dir, max_size_mb=1)
+        delete_small_mp4_files(target_dir, max_size_mb=5)
     else:
         print(f"指定されたディレクトリが存在しません: {target_dir}")
