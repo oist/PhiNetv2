@@ -10,7 +10,7 @@ parser.add_argument('--datadir', type=str, default='../datasets/k400/')
 args = parser.parse_args()
 
 root = os.path.join(args.datadir, 'train')
-output_root = os.path.join(args.datadir, 'train2')
+output_root = os.path.join(args.datadir, 'train2_320')
 
 os.makedirs(output_root, exist_ok=True)
 
@@ -110,6 +110,6 @@ for dir in dirs[args.begin:args.end]:
         output_file = os.path.join(output_dir, filename)
 
         # 入力ファイルと出力ファイルのパスを適切にクォートする
-        cmd = f'ffmpeg -i "{input_file}" -vf "scale=w=256:h=256:force_original_aspect_ratio=decrease,pad=256:256:(ow-iw)/2:(oh-ih)/2" -c:a copy "{output_file}"'
+        cmd = f'ffmpeg -i "{input_file}" -vf "scale=w=320:h=320:force_original_aspect_ratio=decrease,pad=320:320:(ow-iw)/2:(oh-ih)/2" -c:a copy "{output_file}"'
         print(f"Executing: {cmd}")
         os.system(cmd)
