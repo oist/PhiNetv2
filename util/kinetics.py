@@ -64,7 +64,7 @@ class PairedRandomResizedCrop:
     def __init__(
         self,
         hflip_p=0.5,
-        size=(224, 224),
+        size=(288, 288),
         scale=(0.5, 1.0),
         ratio=(3./4., 4./3.),
         interpolation=F.InterpolationMode.BICUBIC
@@ -99,7 +99,6 @@ class PairedRandomResizedCrop:
             cropped_img_2 = F.hflip(cropped_img_2)
 
         return cropped_img_1, cropped_img_2
-
 
 class PairedKinetics(Dataset):
     def __init__(
@@ -213,14 +212,18 @@ class PairedKineticsWT(Dataset):
         # handle temporal segments
         seg_len = len(vr)
         least_frames_num = self.max_distance + 1
-        if seg_len >= least_frames_num:
-            idx_cur = random.randint(0, seg_len - least_frames_num)
-            interval = random.randint(8, self.max_distance)
+        if seg_len >= least_frames_num * 2:  # 2枚おきにするので長さを2倍チェック
+            idx_cur = random.randint(0, seg_len // 2 - least_frames_num)
+            interval = random.randint(4, self.max_distance)
             idx_fut = idx_cur + interval
+            # 実フレームインデックスに変換（2倍）
+            idx_cur *= 2
+            idx_fut *= 2
         else:
-            indices = random.sample(range(seg_len), 2)
+            indices = random.sample(range(0, seg_len, 2), 2)  # 2枚おきに候補を取る
             indices.sort()
             idx_cur, idx_fut = indices
+
         frame_cur = vr[idx_cur].asnumpy()
         frame_fut = vr[idx_fut].asnumpy()
 

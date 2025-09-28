@@ -16,7 +16,7 @@ import timm.optim.optim_factory as optim_factory
 
 import util.misc as misc
 from util.misc import NativeScalerWithGradNormCount as NativeScaler
-from util.kinetics import PairedKineticsWT
+from util.kinetics import PairedKinetics
 
 import models_phinetv2
 
@@ -39,7 +39,7 @@ def get_args_parser():
     parser.add_argument("--seed", default=0, type=int)
     parser.add_argument("--resume", default="", help="resume from checkpoint")
     parser.add_argument("--start_epoch", default=0, type=int)
-    parser.add_argument("--output_dir", default="./output_wt")
+    parser.add_argument("--output_dir", default="./output")
     parser.add_argument("--log_dir", default="./log")
 
     # Model parameters
@@ -60,7 +60,7 @@ def get_args_parser():
     parser.add_argument("--discrete", default=32, type=int)
 
     # Optimizer parameters
-    parser.add_argument("--weight_decay", type=float, default=0.1)
+    parser.add_argument("--weight_decay", type=float, default=0.05)
 
     parser.add_argument("--lr", type=float, default=None,
                         metavar="LR", help="learning rate (absolute lr)")
@@ -70,8 +70,8 @@ def get_args_parser():
     parser.add_argument("--warmup_epochs", type=int, default=40)
 
     # Dataset parameters
-    parser.add_argument("--data_path", default="/work/YamadaU/myamada/Python/dataset/WalkingTours2/", type=str)
-    parser.add_argument("--max_distance", default=48, type=int) #WT video is 60fps K400 is 30fps with max-distance is 48
+    parser.add_argument("--data_path", default="/bucket/YamadaU/Datasets/kinetics400_WT/", type=str)
+    parser.add_argument("--max_distance", default=48, type=int)
     parser.add_argument("--repeated_sampling", type=int, default=2)
     parser.add_argument("--num_workers", default=6, type=int)
     parser.add_argument("--pin_mem", action="store_true")
@@ -84,14 +84,6 @@ def get_args_parser():
     parser.add_argument("--local_rank", default=-1, type=int)
     parser.add_argument("--dist_on_itp", action="store_true")
     parser.add_argument("--dist_url", default="env://")
-
-    #Dora
-    #parser.add_argument('--data_path', default='/scratch/shashank/dataset/WT_videos/', type=str,
-    #    help='Please specify path to the ImageNet training data.')
-    parser.add_argument('-fpc', '--frame_per_clip', default=8, type=int, metavar='N',
-        help='number of frame per video clip (default: 16)')
-    parser.add_argument('-sbc', '--step_between_clips', default=30, type=int, metavar='N',
-        help='number of steps between video clips (default: 1)')
 
     return parser
 
@@ -111,12 +103,7 @@ def main(args):
 
     cudnn.benchmark = True
 
-    #dataset = WT_dataset_1vid(args.data_path, 
-    #            args.frame_per_clip,  
-    #            args.step_between_clips,
-    #            transform=transform) 
-
-    dataset_train = PairedKineticsWT(
+    dataset_train = PairedKinetics(
         args.data_path,
         max_distance=args.max_distance,
         repeated_sampling=args.repeated_sampling
