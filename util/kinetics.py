@@ -64,7 +64,7 @@ class PairedRandomResizedCrop:
     def __init__(
         self,
         hflip_p=0.5,
-        size=(288, 288),
+        size=(224, 224),
         scale=(0.5, 1.0),
         ratio=(3./4., 4./3.),
         interpolation=F.InterpolationMode.BICUBIC
